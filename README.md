@@ -76,13 +76,13 @@ This is a **Task Management System** built using **Angular** to demonstrate task
 
 - Start the development server:  
    ```bash
-   npm start
+   ng serve
    ```
 - Navigate to `http://localhost:4200/` to view the app.
 
 - **Build the project for production**:  
    ```bash
-   npm run build
+   ng build
    ```
 
 ---
