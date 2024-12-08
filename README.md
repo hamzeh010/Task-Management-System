@@ -60,7 +60,7 @@ This is a **Task Management System** built using **Angular** to demonstrate task
 
 1. **Clone the repository**:  
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/hamzeh010/Task-Management-System
    cd task-management-system
    ```
 
