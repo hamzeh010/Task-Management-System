@@ -32,6 +32,9 @@
 
 /* Add responsiveness */
 @media (max-width: 768px) {
+  .demo-btn {
+    display: none;
+  }
   .header-container {
     flex-direction: column; /* Stack items vertically */
     align-items: flex-start; /* Align content to the start */
