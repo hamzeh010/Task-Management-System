@@ -1,0 +1,62 @@
+<mat-card>
+  <mat-card-title class="title-container">
+    {{ taskId ? 'Edit Task' : 'Add Task' }}
+  </mat-card-title>
+  <mat-card-content>
+    <!-- Task Name -->
+    <mat-form-field appearance="fill">
+      <mat-label>Task Name</mat-label>
+      <input matInput [(ngModel)]="taskName" required maxlength="50" placeholder="ex. Do laundry">
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="taskDescription" maxlength="200"></textarea>
+    </mat-form-field>
+
+    <!-- Task Details -->
+    <mat-form-field appearance="fill">
+      <mat-label>Task Details</mat-label>
+      <textarea matInput [(ngModel)]="taskDetails" maxlength="500" placeholder="Provide additional details"></textarea>
+    </mat-form-field>
+
+    <!-- Priority -->
+    <mat-form-field appearance="fill">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="taskPriority" required>
+        <mat-option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Status -->
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="taskStatus" required>
+        <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Assigned To -->
+    <mat-form-field appearance="fill">
+      <mat-label>Assigned To</mat-label>
+      <mat-select [(ngModel)]="taskAssignedTo" required>
+        <mat-option *ngFor="let user of users" [value]="user">{{ user }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Due Date -->
+    <mat-form-field appearance="fill">
+      <mat-label>Due Date</mat-label>
+      <input matInput type="date" [(ngModel)]="taskDueDate" required>
+      <mat-error *ngIf="isDueDateInvalid(taskDueDate)">Due Date cannot be in the past.</mat-error>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="saveTask()" [disabled]="isFormInvalid()">
+        {{ taskId ? 'Update' : 'Add' }}
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

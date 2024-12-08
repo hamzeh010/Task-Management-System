@@ -1,0 +1,62 @@
+/* General Styles */
+.header-container {
+  display: flex; /* Use Flexbox */
+  justify-content: space-between; /* Title on left, buttons on right */
+  align-items: center; /* Center items vertically */
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd; /* Add border for definition */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.task-list-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.task-icon {
+  margin-right: 8px;
+}
+
+.buttons-blk {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between buttons */
+}
+
+/* Add responsiveness */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align content to the start */
+    gap: 10px;
+  }
+
+  .buttons-blk {
+    width: 100%;
+    justify-content: flex-end; /* Align buttons to the right */
+  }
+
+  .add-task-btn {
+    width: 100%; /* Make button full width */
+  }
+}
+
+@media (max-width: 480px) {
+  .task-list-title {
+    font-size: 1.2rem; /* Reduce title size for small screens */
+  }
+
+  .buttons-blk {
+    flex-direction: flex; /* Stack buttons vertically */
+    align-items: stretch; /* Full width buttons */
+    justify-content: center;
+    align-items: center;
+  }
+}

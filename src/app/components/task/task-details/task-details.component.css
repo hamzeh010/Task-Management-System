@@ -1,0 +1,29 @@
+.task-details-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-details-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .task-details-container p {
+    margin: 10px 0;
+  }
+  
+  .not-found {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  .back-link{
+   text-align: right;
+   display: block;
+  }

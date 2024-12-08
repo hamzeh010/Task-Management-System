@@ -1,0 +1,25 @@
+<div class="task-details-container" *ngIf="task">
+    <h2>Task Details</h2>
+  
+    <p *ngIf="task.name"><strong>Task Name:</strong> {{ task.name }}</p>
+    <p *ngIf="task.description"><strong>Description:</strong> {{ task.description }}</p>
+    <p *ngIf="task.priority"><strong>Priority:</strong> {{ task.priority }}</p>
+    <p *ngIf="task.status"><strong>Status:</strong> {{ task.status }}</p>
+    <p *ngIf="task.dueDate"><strong>Due Date:</strong> {{ task.dueDate | date: 'MMM d, y' }}</p>
+    <p *ngIf="task.assignedTo"><strong>Assigned To:</strong> {{ task.assignedTo }}</p>
+    <p *ngIf="task.details"><strong>Details:</strong> {{ task.details }}</p>
+  
+    <a 
+    class="back-link"
+    [routerLink]="['/']" 
+    >
+    Back to Tasks
+</a>
+
+   
+  </div>
+  
+  <div *ngIf="!task" class="not-found">
+    <h3>Task Not Found</h3>
+  </div>
+  

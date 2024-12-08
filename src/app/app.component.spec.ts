@@ -1,10 +1,26 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing'; // Mock routing module
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        AppComponent, // Import the standalone AppComponent
+        RouterTestingModule // Provides mock router dependencies
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute, // Provide a mock ActivatedRoute
+          useValue: {
+            snapshot: { params: { id: '1' } }, // Mock route params
+            queryParams: of({ query: 'test' }) // Mock query params
+          }
+        }
+      ]
     }).compileComponents();
   });
 
@@ -14,16 +30,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'task-management-system' title`, () => {
+  it(`should have the 'task-manager' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('task-management-system');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, task-management-system');
+    expect(app.title).toEqual('task-manager');
   });
 });

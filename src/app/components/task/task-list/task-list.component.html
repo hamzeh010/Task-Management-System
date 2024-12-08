@@ -1,0 +1,167 @@
+<div class="table-container"  class="filter-container">
+  <!-- Search Field -->
+  <mat-form-field appearance="outline">
+    <mat-label>Search Tasks</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search by name or description">
+  </mat-form-field>
+
+  <!-- Priority Filter -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Priority</mat-label>
+    <mat-select (selectionChange)="filterByPriority($event.value)">
+      <mat-option value="">All</mat-option>
+      <mat-option value="High">High</mat-option>
+      <mat-option value="Medium">Medium</mat-option>
+      <mat-option value="Low">Low</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Status Filter -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Status</mat-label>
+    <mat-select (selectionChange)="filterByStatus($event.value)">
+      <mat-option value="">All</mat-option>
+      <mat-option value="Pending">Pending</mat-option>
+      <mat-option value="In Progress">In Progress</mat-option>
+      <mat-option value="Completed">Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Assigned User Filter -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by Assigned User</mat-label>
+    <mat-select (selectionChange)="filterByUser($event.value)">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let user of uniqueAssignedUsers" [value]="user">
+        {{ user }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+</div>
+
+
+<!-- Task Table -->
+<div class="table-container" *ngIf="tasks.length > 0; else noTasks">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 task-table">
+
+    <!-- Task Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Task Name </th>
+      <td mat-cell *matCellDef="let task">
+        <strong>{{ task.name }}</strong>
+      </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let task">
+        {{ task.description || 'N/A' }}
+      </td>
+    </ng-container>
+
+    <!-- Priority Column -->
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef> Priority </th>
+      <td mat-cell *matCellDef="let task">
+        <span class="priority-badge {{ task.priority.toLowerCase() }}">
+          {{ task.priority }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let task">
+        <span  class="{{ getStatusClass(task.status) }} status-badge ">
+          {{ task.status }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Due Date Column -->
+    <ng-container matColumnDef="dueDate">
+      <th mat-header-cell *matHeaderCellDef> Due Date </th>
+      <td mat-cell *matCellDef="let task">
+        {{ task.dueDate | date: 'MMM d, y' }}
+      </td>
+    </ng-container>
+
+    <!-- Assigned To Column -->
+    <ng-container matColumnDef="assignedTo">
+      <th mat-header-cell *matHeaderCellDef> Assigned To </th>
+      <td mat-cell *matCellDef="let task"> {{ task.assignedTo }} </td>
+    </ng-container>
+
+  
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let task" class="buttons-container">
+        <button mat-icon-button color="primary" (click)="viewTask(task.id)" matTooltip="View Task">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" [routerLink]="['/tasks', task.id, 'edit']" matTooltip="Edit Task">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="removeTask(task.id)" matTooltip="Delete Task">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <!-- Table Header and Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Paginator -->
+  <mat-paginator class="transparent-paginator" [pageSize]="10" [pageSizeOptions]="[10, 15, 20]">
+  </mat-paginator>
+</div>
+
+
+<!-- Fallback for No Tasks -->
+<ng-template #noTasks>
+  <div class="alert-box" *ngIf="!tasks || tasks.length === 0">
+    <mat-icon>info</mat-icon>
+    <span>No tasks available. Start by adding a new task!</span>
+  </div>
+</ng-template>
+
+
+<div cdkDropListGroup class="task-columns">
+  
+   <!-- In Progress Column -->
+   <div class="task-column" cdkDropList [cdkDropListData]="inProgressTasks" (cdkDropListDropped)="dropTask($event, 'In Progress')">
+    <h3>In Progress</h3>
+    <div *ngIf="inProgressTasks.length === 0">No tasks In Progress</div>
+    <div class="task-item" *ngFor="let task of inProgressTasks" cdkDrag>
+      {{ task.name }} ({{ task.status }})
+    </div>
+  </div>
+
+  <!-- Pending Column -->
+  <div class="task-column" cdkDropList [cdkDropListData]="pendingTasks" (cdkDropListDropped)="dropTask($event, 'Pending')">
+    <h3>Pending</h3>
+    <div *ngIf="pendingTasks.length === 0">No tasks in Pending</div>
+    <div class="task-item" *ngFor="let task of pendingTasks" cdkDrag>
+      {{ task.name }} ({{ task.status }})
+    </div>
+  </div>
+
+ 
+
+  <!-- Completed Column -->
+  <div class="task-column" cdkDropList [cdkDropListData]="completedTasks" (cdkDropListDropped)="dropTask($event, 'Completed')">
+    <h3>Completed</h3>
+    <div *ngIf="completedTasks.length === 0">No tasks in Completed</div>
+    <div class="task-item" *ngFor="let task of completedTasks" cdkDrag>
+      {{ task.name }} ({{ task.status }})
+    </div>
+  </div>
+</div>

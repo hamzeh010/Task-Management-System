@@ -1,1 +1,108 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url(@angular/material/prebuilt-themes/indigo-pink.css);
+@import url("./assets/style/theme-switcher.scss");
+
+// Light Theme
+:root {
+  --background-color: #f5f5f5;
+  --text-color: #000000;
+}
+
+// Dark Theme
+.dark-theme {
+  --background-color: #121212;
+  --text-color: #ffffff;
+}
+
+
+html,
+body {
+  height: 100%;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  background-color: var(--background-color);
+
+}
+
+nav {
+  width: 50vw;
+}
+
+/* Header Container */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.task-list-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.task-icon {
+  margin-right: 0.5rem;
+}
+
+.add-task-btn {
+  font-weight: bold;
+}
+
+.logo-link{
+  text-decoration: none;
+}
+
+
+
+mat-card {
+  margin-top: 20px;
+  width: 48dvw;
+  padding: 12px;
+  margin: auto;
+}
+
+mat-card-header {
+  width: 100%;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 45dvw;
+}
+
+@media only screen and (max-width: 426px) {
+  mat-card {
+    width: 95vw;
+  }
+
+  mat-form-field {
+    width: 80dvw;
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: end;
+  margin: 0 10px;
+}
+
+
+
+
+

@@ -1,0 +1,208 @@
+/* Dark Mode Variables */
+$dark-background: #1e1e1e;
+$dark-secondary-bg: #2c2c2c;
+$dark-hover-bg: #424242;
+$light-text: #e0e0e0;
+$highlight-text: #90caf9;
+$dimmed-text: #b0bec5;
+$dark-border: #424242;
+$disabled-color: #616161;
+$icon-fill: #f5f5f5;
+$border-color: #fff;
+
+/* Dark Mode Styling */
+body.dark-theme {
+
+  
+  /* Font color */
+  input.mat-input-element {
+    color: white !important;
+  }
+  .mat-mdc-select {
+    color: $light-text !important;
+    border-radius: 4px;
+  }
+  
+
+  .mdc-floating-label,.mat-mdc-select-arrow{
+    color: $light-text !important;
+  }
+
+  /* Mat-select trigger (displayed value area) */
+  .mat-mdc-select-trigger {
+    color: $light-text !important;
+  }
+
+  /* Mat-select dropdown panel */
+  .mat-mdc-select-panel {
+    background-color: $dark-background !important;
+    color: $light-text !important;
+    border: 1px solid $dark-border;
+  }
+
+  /* Mat-option (dropdown options) */
+  .mat-mdc-option {
+    background-color: $dark-background !important;
+    color: $light-text !important;
+
+    &:hover {
+      background-color: $dark-hover-bg !important;
+      color: $highlight-text !important;
+      
+    }
+  }
+
+  /* Selected and active options */
+  .mat-mdc-option.mat-mdc-option--selected {
+    background-color: $dark-hover-bg !important;
+    color: $highlight-text !important;
+  }
+
+  /* Disabled state */
+  .mat-mdc-select-disabled {
+    background-color: $dark-secondary-bg !important;
+    color: $disabled-color !important;
+  }
+
+  /* Mat-select arrow */
+  .mat-select-arrow {
+    color: $icon-fill !important;
+  }
+
+  /* Border styles for focus and hover states */
+  .mat-mdc-select.mat-mdc-select--outlined .mdc-notched-outline__leading,
+  .mat-mdc-select.mat-mdc-select--outlined .mdc-notched-outline__notch,
+  .mat-mdc-select.mat-mdc-select--outlined .mdc-notched-outline__trailing {
+    border-color: $border-color !important;
+    border-width: 1.5px !important;
+  }
+
+  .mat-mdc-select.mat-mdc-select--outlined:hover {
+    border-color: $highlight-text !important;
+  }
+
+  .mat-mdc-select.mat-mdc-select--outlined.mdc-text-field--focused {
+    border-color: $highlight-text !important;
+  }
+
+  /* Table */
+  .task-table {
+    background-color: $dark-background;
+    color: $light-text;
+
+    th {
+      color: $highlight-text;
+      background-color: $dark-secondary-bg;
+      font-weight: 600;
+    }
+
+    td {
+      background-color: $dark-background;
+      color: $light-text;
+    }
+
+    tr:nth-child(even),
+    tr:nth-child(odd) {
+      background-color: $dark-secondary-bg !important;
+    }
+
+    tr:hover {
+      background-color: $dark-hover-bg;
+      transition: background-color 0.2s ease-in-out;
+    }
+  }
+
+  /* MatPaginator */
+  .mat-paginator,
+  .mat-mdc-paginator-container {
+    background-color: $dark-secondary-bg;
+    color: $light-text;
+
+    .mat-icon-button {
+      color: $highlight-text;
+
+      &:hover {
+        background-color: $dark-hover-bg;
+      }
+
+      &.mat-button-disabled {
+        color: $disabled-color;
+      }
+    }
+
+    .mat-paginator-range-label {
+      color: $dimmed-text;
+    }
+
+    .mat-select-value {
+      color: $light-text;
+    }
+
+    .mat-option {
+      background-color: $dark-secondary-bg;
+      color: $light-text;
+
+      &:hover {
+        background-color: $dark-hover-bg;
+      }
+    }
+
+    .mat-mdc-paginator-icon {
+      fill: $icon-fill;
+    }
+  }
+
+  /* Priority and Status Badges */
+  .priority-badge {
+    color: #fff;
+
+    &.high {
+      background-color: #d32f2f; 
+    }
+
+    &.medium {
+      background-color: #ffa000; 
+    }
+
+    &.low {
+      background-color: #388e3c; 
+    }
+  }
+
+  .status-badge {
+    &.completed {
+      background-color: #388e3c; 
+    }
+
+    &.pending {
+      background-color: #ffa000; 
+    }
+
+    &.overdue {
+      background-color: #d32f2f; 
+    }
+  }
+
+  /* Header Container */
+  .header-container {
+    background-color: $dark-background;
+    color: $light-text;
+    border-bottom: 1px solid $dark-border;
+
+    h1,
+    h2,
+    a {
+      color: $light-text;
+    }
+
+    button {
+      &:hover {
+        background-color: $dark-hover-bg;
+      }
+    }
+  }
+}
+
+
+
+

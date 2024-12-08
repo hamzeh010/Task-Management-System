@@ -1,0 +1,29 @@
+<div class="header-container">
+  <!-- Header Title -->
+  <h1 class="task-list-title">
+   <a href="/" class="logo-link">
+    <mat-icon class="task-icon">task_alt</mat-icon>
+    Task Management
+   </a>
+  </h1>
+ <div class="buttons-blk">
+  <!-- Add New Task Button -->
+  <button 
+    mat-raised-button 
+    color="primary" 
+    [routerLink]="['/tasks/add']" 
+    class="add-task-btn">
+    <mat-icon>add</mat-icon>
+    Add New Task
+  </button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="addTasks()"
+    class="add-task-btn">
+    <mat-icon>add</mat-icon>
+    Generate demo tasks
+  </button>
+  <app-theme-switcher/>
+ </div>
+</div>
