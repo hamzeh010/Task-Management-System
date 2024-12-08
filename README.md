@@ -155,9 +155,9 @@ npm test
 
 ## Author
 
-- **[Your Name]**  
-- Email: [Your Email]  
-- LinkedIn: [Your LinkedIn Profile]  
+- **Hamza Al-Salhi**  
+- Email: hamzehsalhi92@gmail.com
+- LinkedIn: https://www.linkedin.com/in/hamza-al-salhi-a504b8b2/
 
 ---
 
